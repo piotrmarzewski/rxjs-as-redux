@@ -5,15 +5,17 @@ import App from './components/App';
 import { createStore } from './rxflux';
 import { log } from './utils';
 
+
+import { Observable } from 'rxjs/Observable';
+
 window.React = React;
 
 const container = document.getElementById('app');
 
 const initState = { name: 'Harry' };
 
-createStore(initState)
+const store$ = createStore(initState)
   .do(log)
   .subscribe((state) =>
     ReactDOM.render(<App {...state} />, container)
   );
-

@@ -3,19 +3,29 @@ export default function reducer(state, action) {
     case 'GITHUB_FOLLOWERS_LOADING':
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: ''
       };
     case 'GITHUB_FOLLOWERS_LOADED':
       return {
         ...state,
         isLoading: false,
         users: action.payload,
+        error: ''
       };
     case 'NAME_CHANGED':
       return {
         ...state,
+        // isLoading: false,
+        name: action.payload,
+        users: [],
+        error: ''
+      };
+    case 'AJAX_ERROR':
+      return {
+        ...state,
         isLoading: false,
-        name: action.payload
+        error: action.payload
       };
     default:
       return state;
